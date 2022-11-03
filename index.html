@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script>
+    <title>Water Trapping</title>
+</head>
+
+<body>
+    <h1 id="heading">Water Trapping</h1>
+    <input type="text" class="width-dynamic proba dva" id="array-input" name="array-input"
+        placeholder="e.g. 0,4,0,0,0,6,0,6,4,0">
+    <button class="button" id="array-btn" onclick="onlyWater();beforeTrap(); afterTrap()">Calculate Water
+        Trapped</button>
+
+
+    <div style="height:fit-content; width:70%; margin: 10px; padding: 2%;">
+        <canvas id="beforetrap" width="170px" height="100px" style="text-align:center"></canvas>
+    </div>
+    <div style="height:fit-content; width:70% ; margin: 10px; padding: 2%;">
+        <h3 id="totalwater"></h3>
+        <canvas id="aftertrap" width="150px" height="100px" style="text-align:center"></canvas>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
