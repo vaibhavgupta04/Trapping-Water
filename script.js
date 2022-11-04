@@ -65,14 +65,7 @@ function makeAfterTrap() {
             labels: lab,
             datasets: [{
                 data: res2,
-                backgroundColor: [
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(54, 162, 235, 0.2)'
-                ],
+                backgroundColor: color2,
                 barPercentage: 1.0,
                 categoryPercentage: 1,
             }]
