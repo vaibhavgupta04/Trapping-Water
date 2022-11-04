@@ -14,16 +14,19 @@
     <h1 id="heading">Water Trapping</h1>
     <input type="text" class="width-dynamic proba dva" id="array-input" name="array-input"
         placeholder="e.g. 0,4,0,0,0,6,0,6,4,0">
-    <button class="button" id="array-btn" onclick="onlyWater();beforeTrap(); afterTrap()">Calculate Water
+    <button class="button" id="array-btn" onclick="getArray();makeBeforeTrap(); makeAfterTrap()">Calculate Water
         Trapped</button>
 
 
-    <div style="height:fit-content; width:70%; margin: 10px; padding: 2%;">
-        <canvas id="beforetrap" width="170px" height="100px" style="text-align:center"></canvas>
-    </div>
-    <div style="height:fit-content; width:70% ; margin: 10px; padding: 2%;">
-        <h3 id="totalwater"></h3>
-        <canvas id="aftertrap" width="150px" height="100px" style="text-align:center"></canvas>
+
+    <div id="charts">
+        <div id="question">
+            <canvas id="beforetrap" width="170px" height="100px" style="text-align:center"></canvas>
+        </div>
+        <div id="answer">
+            <h3 id="totalwater"></h3>
+            <canvas id="aftertrap" width="150px" height="100px" style="text-align:center"></canvas>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

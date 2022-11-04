@@ -1,16 +1,13 @@
 function getArray() {
+
     let element = document.getElementById("array-input");
     let array = element.value.split(",");
-    console.log(array);
     return array;
 }
 
-
-
-
 function getWaterArray() {
     let height = getArray();
-    console.log(height + '\n');
+    console.log("HEIGHT", height + '\n');
     let n = height.length;
     let leftMax = new Array(n);
     let rightMax = new Array(n);
@@ -34,139 +31,68 @@ function getWaterArray() {
             water[i] = (0);
         }
     }
-    console.log(total + " ");
-    console.log(water);
+    console.log("WATER", water)
     return water;
 }
 let onlywater = getWaterArray();
+console.log("ONLY WATER", onlywater)
+
 
 function makeBeforeTrap() {
-    let color = [];
-    let water = [];
-    let bars = getArray();
-    for (let i = 0; i < bars.length; i++) {
-        if (water[i] == 0) {
-            beforeRes.push({ bars: bars[i], color: "yellow" });
-        } else {
-            beforeRes.push({ bars: water[i], color: "blue" });
-        }
-    }
-    console.log(beforeRes);
-
-
-    let beforeObject = {
-        color: color,
-        water: water,
-    }
-    return beforeObject;
+    const beforetrap = document.getElementById('beforetrap');
 }
 
+
 function makeAfterTrap() {
-    let total = 0;
-    let color = [];
-    let water = [];
-    let afterObject = {
-        total: total,
-        color: color,
-        water: water,
+
+    console.log("THIS");
+    let res2 = getWaterArray();
+    console.log("REs", res2);
+    let color2 = new Array(res2.length);
+    color2.fill('rgba(54, 162, 235, 0.2)');
+    let lab = new Array(res2.length);
+    lab.fill('');
+    const aftertrap = document.getElementById('aftertrap');
+
+    let chartStatus = Chart.getChart("aftertrap"); // <canvas> id
+    if (chartStatus != undefined) {
+        chartStatus.destroy();
     }
+
+    const myChart2 = new Chart(aftertrap, {
+        type: 'bar',
+        data: {
+            labels: lab,
+            datasets: [{
+                data: res2,
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(54, 162, 235, 0.2)'
+                ],
+                barPercentage: 1.0,
+                categoryPercentage: 1,
+            }]
+        },
+    });
+
+    let totalWater = 0;
+    for (const element of res2) {
+        totalWater += element;
+    }
+
+    console.log("TOTAL WATER", totalWater)
+    const totalWaterObject = document.getElementById('totalwater');
+    totalWaterObject.innerHTML = "Total Water Trapped - " + totalWater
     return afterObject;
 
 }
 
 
 
-
-function beforeTrap() {
-    let water = getWaterArray();
-    let bars = getArray();
-    let beforeRes = [];
-    for (let i = 0; i < bars.length; i++) {
-        if (water[i] == 0) {
-            beforeRes.push({ bars: bars[i], color: "yellow" });
-        } else {
-            beforeRes.push({ bars: water[i], color: "blue" });
-        }
-    }
-    console.log(beforeRes);
-}
-beforeTrap();
-
-function afterTrap() {
-    let watertrapped = getWaterArray();
-    return watertrapped;
-}
-
-
-const beforetrap = document.getElementById('beforetrap');
-const aftertrap = document.getElementById('aftertrap');
-
-// calculations for chart 1
-
-const myChart1 = new Chart(beforetrap, {
-    type: 'bar',
-    data: {
-        datasets: [{
-            data: [12, 19, 0, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-
-// calculations for chart 2
-
-
-let answater = getWaterArray().water;
-let totalwater = getWaterArray().total;
-
-const myChart2 = new Chart(aftertrap, {
-    type: 'bar',
-    data: {
-        labels: ["", "", "", "", "", ""],
-        datasets: [{
-            data: [12, 19, 0, 5, 2, 3],
-            backgroundColor: [
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)'
-            ],
-        }]
-    },
-    options: {
-        scales: {
-            x: {
-
-                categoryPercentage: 1.0,
-                barPercentage: 1.0
-            }
-        }
-    }
-});
 
 
 
