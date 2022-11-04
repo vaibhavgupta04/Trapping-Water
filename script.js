@@ -50,8 +50,11 @@ function makeAfterTrap() {
     console.log("REs", res2);
     let color2 = new Array(res2.length);
     color2.fill('rgba(54, 162, 235, 0.2)');
+
     let lab = new Array(res2.length);
     lab.fill('');
+
+
     const aftertrap = document.getElementById('aftertrap');
 
     let chartStatus = Chart.getChart("aftertrap"); // <canvas> id
@@ -72,6 +75,66 @@ function makeAfterTrap() {
         },
     });
 
+
+
+
+    //2nd chart for both stacked
+    const beforetrap = document.getElementById('beforetrap');
+
+    let chartStatus2 = Chart.getChart("beforetrap"); // <canvas> id
+    if (chartStatus2 != undefined) {
+        chartStatus2.destroy();
+    }
+
+    let heights = getArray();
+
+    var options = {
+        plugins: {
+            title: {
+                display: true,
+            },
+        },
+        responsive: true,
+        scales: {
+            x: {
+                stacked: true,
+            },
+            y: {
+                stacked: true
+            }
+        }
+    }
+
+    let color1 = new Array(res2.length);
+    //RED COLOR
+    color1.fill('rgb(255, 0, 0,0.2)')
+
+    const myChartBoth = new Chart(beforetrap, {
+        type: 'bar',
+        data: {
+            labels: lab,
+            datasets: [
+
+                {
+                    data: heights,
+                    backgroundColor: color1,
+                    barPercentage: 1.0,
+                    categoryPercentage: 1,
+                    label: 'Dataset 1',
+                },
+                {
+                    data: res2,
+                    backgroundColor: color2,
+                    barPercentage: 1.0,
+                    categoryPercentage: 1,
+                    label: 'Dataset 1',
+                }
+            ]
+        },
+        options: options
+    });
+
+    //end of both chart
     let totalWater = 0;
     for (const element of res2) {
         totalWater += element;
@@ -80,7 +143,7 @@ function makeAfterTrap() {
     console.log("TOTAL WATER", totalWater)
     const totalWaterObject = document.getElementById('totalwater');
     totalWaterObject.innerHTML = "Total Water Trapped - " + totalWater
-    return afterObject;
+    return totalWaterObject;
 
 }
 

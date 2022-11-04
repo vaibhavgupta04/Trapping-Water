@@ -69,3 +69,12 @@ body {
     padding: 2%;
     align-self: center;
 }
+
+#beforetrap {
+    position: relative;
+    transform: scale(0.9);
+}
+
+#aftertrap {
+    transform: scale(0.9);
+}
